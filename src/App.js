@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import InfoInput from './components/InfoInput'
+import LoginInput from './components/LoginInput'
+// import axios from 'axios'
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InfoInput />
+      <LoginInput />
     </div>
   );
 }
 
 export default App;
+
+
+
+// <Router>
+//         <div>
+//           <nav>
+//             <ul>
+//               <li>
+//                 <Link to="/">Home</Link>
+//               </li>
+//               <li>
+//                 <Link to="/"></Link>
+//               </li>
+//             </ul>
+//           </nav>
+
+//           {/* A <Switch> looks through its children <Route>s and
+//             renders the first one that matches the current URL. */}
+//           <Switch>
+//             <Route path="/cart">
+//               <Cart />
+//             </Route>
+//             <Route path="/">
+//               <Home />
+//             </Route>
+//           </Switch>
+//         </div>
+//       </Router>
