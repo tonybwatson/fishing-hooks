@@ -3,8 +3,8 @@ import { Router, Link, Switch, Route } from 'react-router-dom'
 import InfoInput from './components/InfoInput'
 import LoginInput from './components/LoginInput'
 import Dashboard from './components/Dashboard'
+import axios from 'axios'
 
-// import axios from 'axios'
 
 function App() {
   const [token, setToken] = useState('')
@@ -38,8 +38,8 @@ function App() {
   }
 }
 
-export default App;
 
+export default App;
 
 
 // <Router>

@@ -26,7 +26,9 @@ export default function LoginInput(props) {
         console.log(error);
         alert('User email or password is incorrect!')
       });
+      
   }
+  
 
   const handleChange = (e) => {
     const newData = { ...data }
