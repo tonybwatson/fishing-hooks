@@ -1,30 +1,66 @@
-import React from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button, Container } from 'react-bootstrap'
+import axios from 'axios'
 
-export default function LoginInput() {
+export default function LoginInput(props) {
+
+  const [data, setData] = useState({})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
+      email: data.formLoginEmail,
+      password: data.formLoginPassword
+    })
+      .then(function (response) {
+        console.log(response);
+        const token = response.data.data.token
+
+        localStorage.setItem('token', token)
+
+        console.log(token)
+        console.log('Successfully logged in!')
+        props.setToken(token)
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('User email or password is incorrect!')
+      });
+  }
+
+  const handleChange = (e) => {
+    const newData = { ...data }
+    newData[e.target.id] = e.target.value
+    setData(newData)
+    // console.log(newData)
+  }
+
   return (
     <>
-    <h1>Returning User? Log in!</h1>
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-    </Form.Text>
-      </Form.Group>
+      <Container>
+        <h1>Returning User? Log in!</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formLoginEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email"
+              placeholder="Enter email"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        <strike>Enter the matrix</strike> Log in
-  </Button>
-    </Form>
+          <Form.Group className="mb-3" controlId="formLoginPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Log in
+        </Button>
+        </Form>
+      </Container>
     </>
   )
 }

@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
-export default function InfoInput() {
+export default function InfoInput(props) {
 
-  const [data, setData] = useState({
-
-  })
+  const [data, setData] = useState({})
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,7 +15,11 @@ export default function InfoInput() {
     })
       .then(function (response) {
         console.log(response);
-        const token = localStorage.setItem('token', response.data.data.token)
+        const token = response.data.data.token
+        const hasAccount = true;
+        localStorage.setItem('token', token)
+        localStorage.setItem('hasAccount', hasAccount)
+        props.setToken(token)
         console.log(token)
       })
       .catch(function (error) {
@@ -29,8 +31,9 @@ export default function InfoInput() {
     const newData = { ...data }
     newData[e.target.id] = e.target.value
     setData(newData)
-    console.log(newData)
+    // console.log(newData)
   }
+
 
   return (
     <Container>

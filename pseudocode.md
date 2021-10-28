@@ -142,6 +142,8 @@ Components
         V - 
         C - sends requests to api
 
+        - isLoggedIn - if token exists, show dashboard, else show signup/signin
+
     SplashPage
         M - 
         V - display "sign in" and 'sign up" buttons
@@ -157,3 +159,4 @@ Components
     form to submit user data - form inputs sent into axios post request
     form posts data to api, returns token - saves in local storage
     display data on page 
+
