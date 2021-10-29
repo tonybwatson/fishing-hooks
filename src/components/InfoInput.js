@@ -8,7 +8,7 @@ export default function InfoInput(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register', {
+    axios.post('https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register', {
       name: data.formBasicName,
       email: data.formBasicEmail,
       password: data.formBasicPassword
