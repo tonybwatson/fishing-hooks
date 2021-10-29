@@ -4,65 +4,64 @@ import axios from 'axios'
 
 export default function LoginInput(props) {
 
-  const [data, setData] = useState({})
+	const [data, setData] = useState({})
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
-      email: data.formLoginEmail,
-      password: data.formLoginPassword
-    })
-      .then(function (response) {
-        console.log(response);
-        const token = response.data.data.token
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		axios.post('https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login', {
+			email: data.formLoginEmail,
+			password: data.formLoginPassword
+		})
+			.then(function (response) {
+				// console.log(response);
+				const token = response.data.data.token
 
-        localStorage.setItem('token', token)
+				localStorage.setItem('token', token)
 
-        console.log(token)
-        console.log('Successfully logged in!')
-        props.setToken(token)
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert('User email or password is incorrect!')
-      });
-      
-  }
-  
+				// console.log(token)
+				// console.log('Successfully logged in!')
+				props.setToken(token)
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert('User email or password is incorrect!')
+			});
+	}
 
-  const handleChange = (e) => {
-    const newData = { ...data }
-    newData[e.target.id] = e.target.value
-    setData(newData)
-    // console.log(newData)
-  }
 
-  return (
-    <>
-      <Container>
-        <h1>Returning User? Log in!</h1>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formLoginEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email"
-              placeholder="Enter email"
-              onChange={handleChange}
-            />
-          </Form.Group>
+	const handleChange = (e) => {
+		const newData = { ...data }
+		newData[e.target.id] = e.target.value
+		setData(newData)
+		// console.log(newData)
+	}
 
-          <Form.Group className="mb-3" controlId="formLoginPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password"
-              placeholder="Password"
-              onChange={handleChange}
-            />
-          </Form.Group>
+	return (
+		<>
+			<Container>
+				<h1>Returning User? Log in!</h1>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group className="mb-3" controlId="formLoginEmail">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control type="email"
+							placeholder="Enter email"
+							onChange={handleChange}
+						/>
+					</Form.Group>
 
-          <Button variant="primary" type="submit">
-            Log in
+					<Form.Group className="mb-3" controlId="formLoginPassword">
+						<Form.Label>Password</Form.Label>
+						<Form.Control type="password"
+							placeholder="Password"
+							onChange={handleChange}
+						/>
+					</Form.Group>
+
+					<Button variant="primary" type="submit">
+						Log in
         </Button>
-        </Form>
-      </Container>
-    </>
-  )
+				</Form>
+			</Container>
+		</>
+	)
 }
