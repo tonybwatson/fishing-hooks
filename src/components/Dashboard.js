@@ -66,7 +66,7 @@ export default function Dashboard(props) {
 						: <p> {data?.data?.user_data?.orders[0]}</p>
 				}} */}
 				<p>Your total orders: {data?.data?.user_data?.orders[0]?.purchases[0]?.amount}</p>
-				<p>Order #</p>
+			
 				<p className="m-0">Not {data?.data?.user_data?.name}? </p>
 				<Button variant="primary" type="submit" onClick={handleSubmit}>
 					Log out
